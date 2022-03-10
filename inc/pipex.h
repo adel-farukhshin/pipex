@@ -32,4 +32,6 @@ typedef struct s_pipex
 	char	*env;
 }	t_pipex;
 
+int	connect(void);
+
 #endif

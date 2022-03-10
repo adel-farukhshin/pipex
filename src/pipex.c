@@ -31,6 +31,7 @@ int	main(int argc, char **argv, char **env)
 		pipex = malloc(sizeof(pipex));
 		if (pipex == NULL)
 			return (1);
+		pipex->cmd = malloc(sizeof(char *));
 		pipex->argc = argc;
 		pipex->argv = argv;
 		get_path(env, pipex);

@@ -38,10 +38,11 @@ int	check_cmd(t_pipex *pipex)
 			tmp = ft_strjoin(tmp0, pipex->argv[i]);
 			free(tmp0);
 			res = access(tmp, X_OK);
-			// ft_printf("Trying to access %s; __ A_code is %d\n", tmp, res);
-			free(tmp);
+			ft_printf("Trying to access %s; __ A_code is %d\n", tmp, res);
 			if (!res)
-				return 1;
+				pipex->cmd[i - 2] = tmp;
+			else
+				free(tmp);
 			j++;
 		}
 		j = 0;
@@ -56,13 +57,15 @@ int	connect(t_pipex *pipex)
 
 	ft_printf("%s\n", pipex->path[0]);
 	int	i;
-
+	
 	i = check_cmd(pipex);
-	if (i == -1)
-	{
-		ft_printf("Command not found\n");
-		return (6);
-	}
+	// if (i == -1)
+	// {
+	// 	ft_printf("Command not found\n");
+	// 	return (6);
+	// }
+
+	ft_printf("cmd1: %s\ncmd2: %s\n", pipex->cmd[0], pipex->cmd[1]);
 	// i = access("bin/cat", X_OK);
 	// ft_printf("Access code is %d\n", i);
 

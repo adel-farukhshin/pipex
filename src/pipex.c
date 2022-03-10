@@ -21,10 +21,16 @@
 #include "ft_printf.h"
 #include "pipex.h"
 
-int	main(int argc, char **argv, char ** env)
+int	main(int argc, char **argv, char **env)
 {
+	t_pipex	*pipex;
 	int	fd[2];
 
+	pipex = malloc(sizeof(pipex));
+	if (pipex == -1)
+		return (1);
+
+	
 	if (pipe(fd) == -1)
 	{
 		return (1);

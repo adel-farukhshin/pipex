@@ -31,7 +31,8 @@ int	main(int argc, char **argv, char **env)
 		pipex = malloc(sizeof(pipex));
 		if (pipex == NULL)
 			return (1);
-		(void) argv;
+		pipex->argc = argc;
+		pipex->argv = argv;
 		get_path(env, pipex);
 		connect(pipex);
 		ft_free_words(pipex->path);

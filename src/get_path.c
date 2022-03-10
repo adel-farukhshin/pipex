@@ -19,7 +19,6 @@ void	get_path(char **env, t_pipex *pipex)
 {
 	char	*str;
 	char	*tmp;
-	// char	**path;
 	int		i;
 
 	i = 0;
@@ -35,10 +34,10 @@ void	get_path(char **env, t_pipex *pipex)
 	// ft_printf("%s\n", tmp);
 	pipex->path = ft_split(tmp + 5, ':');
 	i = 0;
-	while (pipex->path[i])
-	{
-		ft_printf("%s\n", pipex->path[i]);
-		i++;
-	}
+	// while (pipex->path[i])
+	// {
+	// 	ft_printf("%s\n", pipex->path[i]);
+	// 	i++;
+	// }
 
 }

@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsarai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/10 10:43:25 by bsarai            #+#    #+#             */
-/*   Updated: 2022/03/10 10:43:26 by bsarai           ###   ########.fr       */
+/*   Created: 2021/11/11 20:18:53 by bsarai            #+#    #+#             */
+/*   Updated: 2021/11/11 20:18:57 by bsarai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h> 
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <fcntl.h>
-
 #include <stdlib.h>
-#include <time.h>
-
-#include "ft_printf.h"
 #include "pipex.h"
 
-int	main(int argc, char **argv, char **env)
+char	*ft_strdup(const char *s1)
 {
-	t_pipex	*pipex;
-	// int	fd[2];
+	char	*ret;
+	char	*tmp;
+	int		i;
 
-	if (argc > 1) // == 5)
-	{
-		pipex = malloc(sizeof(pipex));
-		if (pipex == NULL)
-			return (1);
-		(void) argv;
-		get_path(env, pipex);
-		connect();
-	}
-	
-	return (0);
+	i = 0;
+	ret = malloc(ft_strlen(s1) + 1);
+	if (!ret)
+		return (NULL);
+	tmp = (char *) s1;
+	while (*tmp)
+		ret[i++] = *tmp++;
+	ret[i] = '\0';
+	return (ret);
 }

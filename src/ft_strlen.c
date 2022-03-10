@@ -1,40 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsarai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/10 10:43:25 by bsarai            #+#    #+#             */
-/*   Updated: 2022/03/10 10:43:26 by bsarai           ###   ########.fr       */
+/*   Created: 2022/03/10 15:03:36 by bsarai            #+#    #+#             */
+/*   Updated: 2022/03/10 15:03:37 by bsarai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h> 
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <fcntl.h>
-
-#include <stdlib.h>
-#include <time.h>
-
-#include "ft_printf.h"
-#include "pipex.h"
-
-int	main(int argc, char **argv, char **env)
+unsigned long	ft_strlen(const char *s)
 {
-	t_pipex	*pipex;
-	// int	fd[2];
+	unsigned long	a;
 
-	if (argc > 1) // == 5)
+	a = 0;
+	while (*s)
 	{
-		pipex = malloc(sizeof(pipex));
-		if (pipex == NULL)
-			return (1);
-		(void) argv;
-		get_path(env, pipex);
-		connect();
+		a++;
+		s++;
 	}
-	
-	return (0);
+	return (a);
 }

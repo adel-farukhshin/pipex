@@ -32,7 +32,7 @@ typedef struct s_pipex
 	char	**path;
 }	t_pipex;
 
-void			get_path(char **env);
+void			get_path(char **env, t_pipex *pipex);
 
 int				connect(void);
 char			*ft_strstr(const char *haystack, const char *needle);

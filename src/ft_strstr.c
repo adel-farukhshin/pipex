@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsarai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/10 10:43:25 by bsarai            #+#    #+#             */
-/*   Updated: 2022/03/10 10:43:26 by bsarai           ###   ########.fr       */
+/*   Created: 2021/11/13 21:51:37 by bsarai            #+#    #+#             */
+/*   Updated: 2021/11/13 21:51:38 by bsarai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h> 
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <fcntl.h>
-
-#include <stdlib.h>
-#include <time.h>
-
-#include "ft_printf.h"
 #include "pipex.h"
+#include "ft_printf.h"
+#include <stdio.h>
 
-int	main(int argc, char **argv, char **env)
+char	*ft_strstr(const char *haystack, const char *needle)
 {
-	t_pipex	*pipex;
-	// int	fd[2];
+	char	*h;
+	size_t	nlen;
+	size_t	i;
+	size_t	j;
 
-	if (argc > 1) // == 5)
+	h = (char *) haystack;
+	nlen = (size_t) ft_strlen(needle);
+	if (!nlen)
+		return (h);
+	if (ft_strlen(haystack) < nlen)
+		return (NULL);
+	i = 0;
+	while (h[i])
 	{
-		pipex = malloc(sizeof(pipex));
-		if (pipex == NULL)
-			return (1);
-		(void) argv;
-		get_path(env, pipex);
-		connect();
+		j = 0;
+		while (needle[j] && needle[j] == h[i + j])
+			j++;
+		if (j == nlen)
+			return (&h[i]);
+		i++;
 	}
-	
-	return (0);
+	return (NULL);
 }

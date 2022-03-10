@@ -1,40 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsarai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/10 10:43:25 by bsarai            #+#    #+#             */
-/*   Updated: 2022/03/10 10:43:26 by bsarai           ###   ########.fr       */
+/*   Created: 2022/03/10 14:40:41 by bsarai            #+#    #+#             */
+/*   Updated: 2022/03/10 14:40:42 by bsarai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h> 
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <fcntl.h>
-
 #include <stdlib.h>
-#include <time.h>
 
 #include "ft_printf.h"
 #include "pipex.h"
 
-int	main(int argc, char **argv, char **env)
+void	get_path(char **env, t_pipex *pipex)
 {
-	t_pipex	*pipex;
-	// int	fd[2];
+	char	*str;
+	char	*tmp;
+	// char	**path;
+	int		i;
 
-	if (argc > 1) // == 5)
+	i = 0;
+	// ft_printf("*env is: %s", *env);
+	while (env[i])
 	{
-		pipex = malloc(sizeof(pipex));
-		if (pipex == NULL)
-			return (1);
-		(void) argv;
-		get_path(env, pipex);
-		connect();
+		if (ft_strstr(env[i], "PATH"))
+			str = ft_strstr(env[i], "PATH");
+		i++;
 	}
-	
-	return (0);
+	tmp = ft_strdup(str);
+	free(tmp);
+	// ft_printf("%s\n", tmp);
+	pipex->path = ft_split(tmp + 5, ':');
+	i = 0;
+	while (pipex->path[i])
+	{
+		ft_printf("%s\n", pipex->path[i]);
+		i++;
+	}
+
 }

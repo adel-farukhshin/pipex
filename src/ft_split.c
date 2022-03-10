@@ -16,7 +16,7 @@
 static int		ft_count(char *s, char c);
 static char		*ft_cpy_word(char *s, char c);
 static char		**ft_cpy_words(char *s, char c, int count);
-static void		ft_free_words(char **words, int i);
+void		ft_free_words(char **words);
 
 char	**ft_split(char const *s, char c)
 {
@@ -78,7 +78,7 @@ static char	**ft_cpy_words(char *s, char c, int count)
 		word = ft_cpy_word(s, c);
 		if (!word)
 		{
-			ft_free_words(words, i);
+			ft_free_words(words);
 			return (NULL);
 		}
 		words[i++] = word;
@@ -88,8 +88,13 @@ static char	**ft_cpy_words(char *s, char c, int count)
 	return (words);
 }
 
-static	void	ft_free_words(char **words, int i)
+void	ft_free_words(char **words)
 {
+	int	i;
+
+	i = 0;
+	while (words[i])
+		i++;
 	while (i > -1)
 	{
 		free(words[i]);

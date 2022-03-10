@@ -40,5 +40,6 @@ int				ft_strncopy(char *dst, const char *src, int n);
 unsigned long	ft_strlen(const char *s);
 char			*ft_strdup(const char *s1);
 char			**ft_split(char const *s, char c);
+void			ft_free_words(char **words);
 
 #endif

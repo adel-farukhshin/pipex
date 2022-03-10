@@ -57,8 +57,6 @@ static char	*ft_cpy_word(char *s, char c)
 	word = s;
 	while (*s && *s != c)
 		s++;
-	*s = '/';
-	s++;
 	*s = '\0';
 	return (ft_strdup(word));
 }

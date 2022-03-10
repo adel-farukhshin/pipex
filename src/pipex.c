@@ -19,8 +19,9 @@
 #include <time.h>
 
 #include "ft_printf.h"
+#include "pipex.h"
 
-int	main()
+int	main(int argc, char **argv, char ** env)
 {
 	int	fd[2];
 
@@ -58,13 +59,13 @@ int	main()
 	}
 	if (pid2 == 0)
 	{
-		int	file = open("out", O_CREAT | O_WRONLY, 0777);
+		int	file = open("out", O_WRONLY | O_CREAT, 0777);
 		// ft_printf("In child 1\n");
 		dup2(fd[0], STDIN_FILENO);
 		dup2(file, STDOUT_FILENO);
 		close(fd[0]);
 		close(fd[1]);
-		execlp("grep", "grep", "", NULL);
+		execlp("/usr/bin/grep", "/usr/bin/grep", "hello", NULL);
 	}
 	// ft_printf("Hi\n");
 

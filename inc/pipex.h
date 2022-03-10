@@ -29,9 +29,10 @@ typedef struct s_pipex
 {
 	int		argc;
 	char	**argv;
-	char	*env;
+	char	**env;
 }	t_pipex;
 
-int	connect(void);
+int		connect(void);
+char	*ft_strstr(const char *haystack, const char *needle);
 
 #endif

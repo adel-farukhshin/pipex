@@ -41,5 +41,6 @@ unsigned long	ft_strlen(const char *s);
 char			*ft_strdup(const char *s1);
 char			**ft_split(char const *s, char c);
 void			ft_free_words(char **words);
+char			*ft_strjoin(char const *s1, char const *s2);
 
 #endif

@@ -20,9 +20,51 @@
 #include "ft_printf.h"
 #include "pipex.h"
 
+int	check_cmd(t_pipex *pipex)
+{
+	int		i;
+	int		j;
+	int		res;
+	char	*tmp;
+	char	*tmp0;
+
+	i = 2;
+	j = 0;
+	while (i < pipex->argc - 1)
+	{
+		while (pipex->path[j])
+		{
+			tmp0 = ft_strjoin(pipex->path[j], "/"); 
+			tmp = ft_strjoin(tmp0, pipex->argv[i]);
+			free(tmp0);
+			res = access(tmp, X_OK);
+			// ft_printf("Trying to access %s; __ A_code is %d\n", tmp, res);
+			free(tmp);
+			if (!res)
+				return 1;
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	return (-1); // handle errors
+}
+
 int	connect(t_pipex *pipex)
 {
 	int	fd[2];
+
+	ft_printf("%s\n", pipex->path[0]);
+	int	i;
+
+	i = check_cmd(pipex);
+	if (i == -1)
+	{
+		ft_printf("Command not found\n");
+		return (6);
+	}
+	// i = access("bin/cat", X_OK);
+	// ft_printf("Access code is %d\n", i);
 
 	if (pipe(fd) == -1)
 	{

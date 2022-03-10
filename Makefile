@@ -1,7 +1,8 @@
 
 NAME = pipex
 
-SRC =	pipex.c pipe.c
+SRC =	pipex.c pipe.c get_path.c ft_strstr.c ft_strlen.c ft_strdup.c ft_split.c \
+		ft_strjoin.c
 
 OBJ = $(addprefix $(OBJDIR),$(SRC:.c=.o))
 

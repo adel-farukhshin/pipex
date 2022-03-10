@@ -38,7 +38,7 @@ int	connect(t_pipex *pipex)
 	}
 	if (pid1 == 0)
 	{ 
-		int	file = open("in", O_RDONLY);
+		int	file = open(pipex->argv[1], O_RDONLY);
 		if (file == -1)
 			return (4);
 		dup2(file, STDIN_FILENO);
@@ -58,7 +58,8 @@ int	connect(t_pipex *pipex)
 	}
 	if (pid2 == 0)
 	{
-		int	file = open("out", O_WRONLY | O_CREAT, 0777);
+		int	file = open(pipex->argv[pipex->argc - 1]
+				, O_WRONLY | O_CREAT, 0777);
 		// ft_printf("In child 1\n");
 		dup2(fd[0], STDIN_FILENO);
 		dup2(file, STDOUT_FILENO);

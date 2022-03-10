@@ -34,7 +34,8 @@ int	main(int argc, char **argv, char **env)
 		(void) argv;
 		get_path(env, pipex);
 		connect(pipex);
+		ft_free_words(pipex->path);
 	}
-	ft_free_words(pipex->path);
+	
 	return (0);
 }

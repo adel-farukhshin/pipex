@@ -20,7 +20,7 @@
 #include "ft_printf.h"
 #include "pipex.h"
 
-int	connect(void)
+int	connect(t_pipex *pipex)
 {
 	int	fd[2];
 

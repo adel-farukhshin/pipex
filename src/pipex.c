@@ -33,7 +33,7 @@ int	main(int argc, char **argv, char **env)
 			return (1);
 		(void) argv;
 		get_path(env, pipex);
-		connect();
+		connect(pipex);
 	}
 	ft_free_words(pipex->path);
 	return (0);

@@ -30,9 +30,9 @@ void	get_path(char **env, t_pipex *pipex)
 		i++;
 	}
 	tmp = ft_strdup(str);
-	free(tmp);
 	// ft_printf("%s\n", tmp);
 	pipex->path = ft_split(tmp + 5, ':');
+	free(tmp);
 	i = 0;
 	// while (pipex->path[i])
 	// {

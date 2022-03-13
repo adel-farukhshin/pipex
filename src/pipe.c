@@ -92,7 +92,7 @@ int	connect(t_pipex *pipex)
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[1]);
 		close(fd[0]);
-		execlp("cat", "cat", NULL);
+		execlp(pipex->cmd[0], pipex->cmd[0], NULL);
 		// execlp("ping", "ping", "-c", "1", "google.com", NULL);
 	}
 
@@ -110,7 +110,7 @@ int	connect(t_pipex *pipex)
 		dup2(file, STDOUT_FILENO);
 		close(fd[0]);
 		close(fd[1]);
-		execlp("/usr/bin/grep", "/usr/bin/grep", "hello", NULL);
+		execlp(pipex->cmd[1], pipex->cmd[1], "hello", NULL);
 	}
 	// ft_printf("Hi\n");
 

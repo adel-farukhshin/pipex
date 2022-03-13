@@ -39,7 +39,7 @@ int	main(int argc, char **argv, char **env)
 		pipex->argv = argv;
 		get_path(env, pipex);
 		check_cmd(pipex);
-		// connect(pipex);
+		connect(pipex);
 		free_pipex(pipex);
 		// ft_free_words(pipex->path);
 	}

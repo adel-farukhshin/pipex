@@ -20,20 +20,11 @@
 #include "ft_printf.h"
 #include "pipex.h"
 
-
-int	connect(t_pipex *pipex)
+int	child1(int fd[2], t_pipex *pipex)
 {
-	int		fd[2];
-	char	**l_argv;
-	ft_printf("cmd1: %s\ncmd2: %s\n", pipex->cmd[0], pipex->cmd[1]);
-
-	if (pipe(fd) == -1)
-	{
-		return (1);
-	}
-
-
+		
 	int	pid1 = fork();
+	char	**l_argv;
 	
 	if (pid1 < 0)
 	{
@@ -59,7 +50,13 @@ int	connect(t_pipex *pipex)
 		// execlp(pipex->cmd[0], pipex->cmd[0], NULL);
 		// execlp("ping", "ping", "-c", "1", "google.com", NULL);
 	}
-	// ft_printf("before second fork\n");
+	return(pid1);
+}
+
+int	child2(int fd[2], t_pipex *pipex)
+{
+	char	**l_argv;
+
 	int	pid2 = fork();
 	if (pid2 < 0)
 	{
@@ -82,6 +79,23 @@ int	connect(t_pipex *pipex)
 		// execlp(pipex->cmd[1], pipex->cmd[1], "hello", NULL);
 	}
 	// ft_printf("after second fork\n");
+
+	return (pid2);
+}
+
+int	connect(t_pipex *pipex)
+{
+	int		fd[2];
+	
+	ft_printf("cmd1: %s\ncmd2: %s\n", pipex->cmd[0], pipex->cmd[1]);
+
+	if (pipe(fd) == -1)
+	{
+		return (1);
+	}
+
+	int pid1 = child1(fd, pipex);
+	int	pid2 = child2(fd, pipex);
 
 	close(fd[0]); 
 	close(fd[1]); 

@@ -23,8 +23,8 @@
 
 int	connect(t_pipex *pipex)
 {
-	int	fd[2];
-
+	int		fd[2];
+	char	**l_argv;
 	ft_printf("cmd1: %s\ncmd2: %s\n", pipex->cmd[0], pipex->cmd[1]);
 
 	if (pipe(fd) == -1)
@@ -50,7 +50,12 @@ int	connect(t_pipex *pipex)
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[1]);
 		close(fd[0]);
-		execlp("/bin/cat", "/bin/cat", NULL);
+		
+
+		l_argv = ft_split(pipex->argv[2], ' ');
+		execve(pipex->cmd[0], l_argv, pipex->env);
+
+		// execlp("/bin/cat", "/bin/cat", NULL);
 		// execlp(pipex->cmd[0], pipex->cmd[0], NULL);
 		// execlp("ping", "ping", "-c", "1", "google.com", NULL);
 	}
@@ -69,7 +74,11 @@ int	connect(t_pipex *pipex)
 		dup2(file, STDOUT_FILENO);
 		close(fd[0]);
 		close(fd[1]);
-		execlp("/usr/bin/grep", "/usr/bin/grep", "hello", NULL);
+
+		l_argv = ft_split(pipex->argv[3], ' ');
+		execve(pipex->cmd[1], l_argv, pipex->env);
+
+		// execlp("/usr/bin/grep", "/usr/bin/grep", "hello", NULL);
 		// execlp(pipex->cmd[1], pipex->cmd[1], "hello", NULL);
 	}
 	// ft_printf("after second fork\n");

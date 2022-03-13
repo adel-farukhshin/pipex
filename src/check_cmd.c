@@ -30,6 +30,7 @@ static void	is_tofree(t_pipex *pipex)
 	if (i != pipex->argc - 3)
 	{
 		// ft_printf("in if is_tofree i %d, argc %d\n", i, pipex->argc);
+		write(2, "Command not found\n", 18);
 		free_pipex(pipex);
 		exit (1);
 	}

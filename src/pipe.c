@@ -20,21 +20,31 @@
 #include "ft_printf.h"
 #include "pipex.h"
 
+#include <errno.h>
+#include <stdio.h>
+
 int	child1(int fd[2], t_pipex *pipex)
 {
 		
-	int	pid1 = fork();
+	int		pid1;
 	char	**l_argv;
 	
+	pid1 = fork();
 	if (pid1 < 0)
 	{
+		perror("Error mesage");
 		return (2);
 	}
 	if (pid1 == 0)
 	{ 
-		int	file = open(pipex->argv[1], O_RDONLY);
+		int	file;
+
+		file = open(pipex->argv[1], O_RDONLY);
 		if (file == -1)
+		{
+			perror("Error mesage");
 			return (4);
+		}
 		dup2(file, STDIN_FILENO);
 		close(file);
 		// ft_printf("In child 1\n");

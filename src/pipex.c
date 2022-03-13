@@ -26,8 +26,11 @@ int	main(int argc, char **argv, char **env)
 	t_pipex	*pipex;
 	// int	fd[2];
 
-	if (argc > 1) // == 5)
+	if (argc != 5)
 	{
+		write(2, "Error: ./pipex file1 cmd1 cmd2 file2\n", 37);
+		exit(1);
+	}
 		pipex = malloc(sizeof(t_pipex));
 		if (pipex == NULL)
 			return (1);
@@ -43,7 +46,7 @@ int	main(int argc, char **argv, char **env)
 		connect(pipex);
 		free_pipex(pipex);
 		// ft_free_words(pipex->path);
-	}
+	
 	
 	return (0);
 }

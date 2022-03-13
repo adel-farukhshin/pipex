@@ -32,7 +32,6 @@ int	check_cmd(t_pipex *pipex)
 {
 	int		i;
 	int		j;
-	int		res;
 	char	*tmp;
 
 	i = 2;
@@ -42,9 +41,8 @@ int	check_cmd(t_pipex *pipex)
 		while (pipex->path[j])
 		{	
 			tmp = get_cmd(pipex->path[j], pipex->argv[i]);
-			res = access(tmp, X_OK);
 			// ft_printf("Trying to access %s; __ A_code is %d; i is %d\n", tmp, res, i);
-			if (!res)
+			if (!access(tmp, X_OK))
 				pipex->cmd[i - 2] = tmp;
 			else
 				free(tmp);

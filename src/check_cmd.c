@@ -49,6 +49,7 @@ char	*get_cmd(char *path, char *cmd)
 	tmp = ft_strjoin(t_path, "/");
 	free(t_path);
 	t_path = ft_strjoin(tmp, cmd);
+	free(tmp);
 	return (t_path);
 }
 

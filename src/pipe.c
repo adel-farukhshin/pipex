@@ -20,36 +20,6 @@
 #include "ft_printf.h"
 #include "pipex.h"
 
-int	check_cmd(t_pipex *pipex)
-{
-	int		i;
-	int		j;
-	int		res;
-	char	*tmp;
-	char	*tmp0;
-
-	i = 2;
-	j = 0;
-	while (i < pipex->argc - 1)
-	{
-		while (pipex->path[j])
-		{
-			tmp0 = ft_strjoin(pipex->path[j], "/"); 
-			tmp = ft_strjoin(tmp0, pipex->argv[i]);
-			free(tmp0);
-			res = access(tmp, X_OK);
-			ft_printf("Trying to access %s; __ A_code is %d\n", tmp, res);
-			if (!res)
-				pipex->cmd[i - 2] = tmp;
-			else
-				free(tmp);
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-	return (-1); // handle errors
-}
 
 int	connect(t_pipex *pipex)
 {
@@ -92,7 +62,8 @@ int	connect(t_pipex *pipex)
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[1]);
 		close(fd[0]);
-		execlp(pipex->cmd[0], pipex->cmd[0], NULL);
+		execlp("cat", "cat", NULL);
+		// execlp(pipex->cmd[0], pipex->cmd[0], NULL);
 		// execlp("ping", "ping", "-c", "1", "google.com", NULL);
 	}
 
@@ -110,7 +81,8 @@ int	connect(t_pipex *pipex)
 		dup2(file, STDOUT_FILENO);
 		close(fd[0]);
 		close(fd[1]);
-		execlp(pipex->cmd[1], pipex->cmd[1], "hello", NULL);
+		execlp("/usr/bin/grep", "/usr/bin/grep", "hello", NULL);
+		// execlp(pipex->cmd[1], pipex->cmd[1], "hello", NULL);
 	}
 	// ft_printf("Hi\n");
 

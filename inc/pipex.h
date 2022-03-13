@@ -36,6 +36,8 @@ typedef struct s_pipex
 void			get_path(char **env, t_pipex *pipex);
 
 int				connect(t_pipex *pipex);
+int				check_cmd(t_pipex *pipex);
+
 char			*ft_strstr(const char *haystack, const char *needle);
 int				ft_strncopy(char *dst, const char *src, int n);
 unsigned long	ft_strlen(const char *s);

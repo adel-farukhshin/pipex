@@ -97,16 +97,18 @@ int	child2(int fd[2], t_pipex *pipex)
 int	connect(t_pipex *pipex)
 {
 	int		fd[2];
-	
-	ft_printf("cmd1: %s\ncmd2: %s\n", pipex->cmd[0], pipex->cmd[1]);
+	int 	pid1;
+	int		pid2;
+
+	// ft_printf("cmd1: %s\ncmd2: %s\n", pipex->cmd[0], pipex->cmd[1]);
 
 	if (pipe(fd) == -1)
 	{
+		perror("Error mesage");
 		return (1);
 	}
-
-	int pid1 = child1(fd, pipex);
-	int	pid2 = child2(fd, pipex);
+	pid1 = child1(fd, pipex);
+	pid2 = child2(fd, pipex);
 
 	close(fd[0]); 
 	close(fd[1]); 

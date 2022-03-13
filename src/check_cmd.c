@@ -27,9 +27,9 @@ static void	is_tofree(t_pipex *pipex)
 		i++;
 	}
 	// ft_printf("i in is_tofree is equal to %d\n", i);
-	if (i != pipex->argc - 3 - 1)
+	if (i != pipex->argc - 3)
 	{
-		// ft_printf("in if is_tofree\n", i);
+		// ft_printf("in if is_tofree i %d, argc %d\n", i, pipex->argc);
 		free_pipex(pipex);
 		exit (1);
 	}
@@ -44,12 +44,15 @@ char	*get_cmd(char *path, char *cmd)
 {
 	char	*t_path;
 	char	*tmp;
+	char	**t_cmd;
 
 	t_path = ft_strdup(path);
 	tmp = ft_strjoin(t_path, "/");
 	free(t_path);
-	t_path = ft_strjoin(tmp, cmd);
+	t_cmd = ft_split(cmd, ' ');
+	t_path = ft_strjoin(tmp, t_cmd[0]);
 	free(tmp);
+	free_strs(t_cmd);
 	return (t_path);
 }
 

@@ -37,6 +37,7 @@ static void	is_tofree(t_pipex *pipex)
 	{
 		// ft_printf("in else is_tofree\n");
 		free_strs(pipex->path);
+		pipex->path = NULL;
 	}
 }
 

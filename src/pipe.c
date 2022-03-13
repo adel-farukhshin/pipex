@@ -25,18 +25,7 @@ int	connect(t_pipex *pipex)
 {
 	int	fd[2];
 
-	ft_printf("%s\n", pipex->path[0]);
-		
-	
-	// if (i == -1)
-	// {
-	// 	ft_printf("Command not found\n");
-	// 	return (6);
-	// }
-
 	ft_printf("cmd1: %s\ncmd2: %s\n", pipex->cmd[0], pipex->cmd[1]);
-	// i = access("bin/cat", X_OK);
-	// ft_printf("Access code is %d\n", i);
 
 	if (pipe(fd) == -1)
 	{
@@ -61,11 +50,11 @@ int	connect(t_pipex *pipex)
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[1]);
 		close(fd[0]);
-		execlp("cat", "cat", NULL);
+		execlp("/bin/cat", "/bin/cat", NULL);
 		// execlp(pipex->cmd[0], pipex->cmd[0], NULL);
 		// execlp("ping", "ping", "-c", "1", "google.com", NULL);
 	}
-
+	// ft_printf("before second fork\n");
 	int	pid2 = fork();
 	if (pid2 < 0)
 	{
@@ -75,7 +64,7 @@ int	connect(t_pipex *pipex)
 	{
 		int	file = open(pipex->argv[pipex->argc - 1]
 				, O_WRONLY | O_CREAT, 0777);
-		// ft_printf("In child 1\n");
+		// ft_printf("In child 2\n");
 		dup2(fd[0], STDIN_FILENO);
 		dup2(file, STDOUT_FILENO);
 		close(fd[0]);
@@ -83,7 +72,7 @@ int	connect(t_pipex *pipex)
 		execlp("/usr/bin/grep", "/usr/bin/grep", "hello", NULL);
 		// execlp(pipex->cmd[1], pipex->cmd[1], "hello", NULL);
 	}
-	// ft_printf("Hi\n");
+	// ft_printf("after second fork\n");
 
 	close(fd[0]); 
 	close(fd[1]); 

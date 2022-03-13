@@ -16,6 +16,30 @@
 #include "ft_printf.h"
 #include "pipex.h"
 
+static void	is_tofree(t_pipex *pipex)
+{
+	int	i;
+
+	i = 0;
+	while (pipex->cmd[i] != NULL)
+	{
+		// ft_printf("cmd is %s\n", pipex->cmd[i]);
+		i++;
+	}
+	// ft_printf("i in is_tofree is equal to %d\n", i);
+	if (i != pipex->argc - 3 - 1)
+	{
+		// ft_printf("in if is_tofree\n", i);
+		free_pipex(pipex);
+		exit (1);
+	}
+	else
+	{
+		// ft_printf("in else is_tofree\n");
+		ft_free_words(pipex->path);
+	}
+}
+
 char	*get_cmd(char *path, char *cmd)
 {
 	char	*t_path;
@@ -51,5 +75,6 @@ int	check_cmd(t_pipex *pipex)
 		j = 0;
 		i++;
 	}
+	is_tofree(pipex);
 	return (-1); // handle errors
 }

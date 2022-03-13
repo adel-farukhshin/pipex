@@ -31,13 +31,17 @@ int	main(int argc, char **argv, char **env)
 		pipex = malloc(sizeof(t_pipex));
 		if (pipex == NULL)
 			return (1);
-		pipex->cmd = malloc(sizeof(char *) * 2);
+		pipex->cmd = malloc(sizeof(char *) * 3);
+		pipex->cmd[0] = NULL;
+		pipex->cmd[1] = NULL;
+		pipex->cmd[2] = NULL;
 		pipex->argc = argc;
 		pipex->argv = argv;
 		get_path(env, pipex);
 		check_cmd(pipex);
-		connect(pipex);
-		ft_free_words(pipex->path);
+		// connect(pipex);
+		free_pipex(pipex);
+		// ft_free_words(pipex->path);
 	}
 	
 	return (0);

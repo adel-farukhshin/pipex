@@ -38,7 +38,7 @@ int	main(int argc, char **argv, char **env)
 		pipex->argc = argc;
 		pipex->argv = argv;
 		pipex->env = env;
-		get_path(env, pipex);
+		get_path(pipex);
 		check_cmd(pipex);
 		connect(pipex);
 		free_pipex(pipex);

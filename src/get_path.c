@@ -15,7 +15,7 @@
 #include "ft_printf.h"
 #include "pipex.h"
 
-void	get_path(char **env, t_pipex *pipex)
+void	get_path(t_pipex *pipex)
 {
 	char	*str;
 	char	*tmp;
@@ -23,10 +23,10 @@ void	get_path(char **env, t_pipex *pipex)
 
 	i = 0;
 	// ft_printf("*env is: %s", *env);
-	while (env[i])
+	while (pipex->env[i])
 	{
-		if (ft_strstr(env[i], "PATH"))
-			str = ft_strstr(env[i], "PATH");
+		if (ft_strstr(pipex->env[i], "PATH"))
+			str = ft_strstr(pipex->env[i], "PATH");
 		i++;
 	}
 	tmp = ft_strdup(str);

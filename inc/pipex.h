@@ -34,7 +34,7 @@ typedef struct s_pipex
 	char	**env;
 }	t_pipex;
 
-void			get_path(char **env, t_pipex *pipex);
+void			get_path(t_pipex *pipex);
 
 int				connect(t_pipex *pipex);
 int				check_cmd(t_pipex *pipex);

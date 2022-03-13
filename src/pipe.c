@@ -26,9 +26,8 @@ int	connect(t_pipex *pipex)
 	int	fd[2];
 
 	ft_printf("%s\n", pipex->path[0]);
-	int	i;
+		
 	
-	i = check_cmd(pipex);
 	// if (i == -1)
 	// {
 	// 	ft_printf("Command not found\n");

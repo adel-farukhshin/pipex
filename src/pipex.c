@@ -28,10 +28,10 @@ int	main(int argc, char **argv, char **env)
 
 	if (argc > 1) // == 5)
 	{
-		pipex = malloc(sizeof(pipex));
+		pipex = malloc(sizeof(t_pipex));
 		if (pipex == NULL)
 			return (1);
-		pipex->cmd = malloc(sizeof(char *));
+		pipex->cmd = malloc(sizeof(char *) * 2);
 		pipex->argc = argc;
 		pipex->argv = argv;
 		get_path(env, pipex);

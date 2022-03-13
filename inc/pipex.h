@@ -39,6 +39,7 @@ int				connect(t_pipex *pipex);
 int				check_cmd(t_pipex *pipex);
 
 void			free_pipex(t_pipex *pipex);
+void			free_strs(char **strs);
 
 char			*ft_strstr(const char *haystack, const char *needle);
 int				ft_strncopy(char *dst, const char *src, int n);

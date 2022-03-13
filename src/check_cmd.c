@@ -36,7 +36,7 @@ static void	is_tofree(t_pipex *pipex)
 	else
 	{
 		// ft_printf("in else is_tofree\n");
-		ft_free_words(pipex->path);
+		free_strs(pipex->path);
 	}
 }
 

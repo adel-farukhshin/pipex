@@ -64,6 +64,7 @@ int	child2(int fd[2], t_pipex *pipex)
 	}
 	if (pid2 == 0)
 	{
+		unlink(pipex->argv[pipex->argc - 1]);
 		int	file = open(pipex->argv[pipex->argc - 1]
 				, O_WRONLY | O_CREAT, 0777);
 		// ft_printf("In child 2\n");

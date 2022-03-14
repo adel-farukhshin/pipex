@@ -20,7 +20,7 @@ void	free_strs(char **strs)
 	int	i;
 
 	i = 0;
-	if (*strs)
+	if (strs)
 	{
 		while(strs[i])
 		{

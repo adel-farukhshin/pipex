@@ -23,6 +23,13 @@
 #include <errno.h>
 #include <stdio.h>
 
+void	err_process(int fd[2])
+{
+	close(fd[0]);
+	close(fd[1]);
+	perror("Error mesage");
+}
+
 int	child1(int fd[2], t_pipex *pipex)
 {
 		
@@ -32,8 +39,8 @@ int	child1(int fd[2], t_pipex *pipex)
 	pid1 = fork();
 	if (pid1 < 0)
 	{
-		perror("Error mesage");
-		return (2);
+		err_process(fd);
+		return (-1);
 	}
 	if (pid1 == 0)
 	{ 
@@ -42,8 +49,9 @@ int	child1(int fd[2], t_pipex *pipex)
 		file = open(pipex->argv[1], O_RDONLY);
 		if (file == -1)
 		{
-			perror("Error mesage");
-			return (4);
+			// perror("Error mesage");
+			err_process(fd);
+			return (-1);
 		}
 		dup2(file, STDIN_FILENO);
 		close(file);
@@ -70,13 +78,20 @@ int	child2(int fd[2], t_pipex *pipex)
 	int	pid2 = fork();
 	if (pid2 < 0)
 	{
-		return (3);
+		err_process(fd);
+		return (-1);
 	}
 	if (pid2 == 0)
 	{
 		unlink(pipex->argv[pipex->argc - 1]);
 		int	file = open(pipex->argv[pipex->argc - 1]
 				, O_WRONLY | O_CREAT, 0777);
+		if (file < 0)
+		{
+			err_process(fd);
+			return (-1);
+		}
+		
 		// ft_printf("In child 2\n");
 		dup2(fd[0], STDIN_FILENO);
 		dup2(file, STDOUT_FILENO);
@@ -105,10 +120,20 @@ int	connect(t_pipex *pipex)
 	if (pipe(fd) == -1)
 	{
 		perror("Error mesage");
-		return (1);
+		return (-1);
 	}
 	pid1 = child1(fd, pipex);
+	if (pid1 < 0)
+	{
+		err_process(fd);
+		return (-1);
+	}
 	pid2 = child2(fd, pipex);
+	if (pid2 < 0)
+	{
+		err_process(fd);
+		return (-1);
+	}
 
 	close(fd[0]); 
 	close(fd[1]); 

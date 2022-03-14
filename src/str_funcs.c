@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   str_funcs.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bsarai <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/14 14:35:21 by bsarai            #+#    #+#             */
+/*   Updated: 2022/03/14 14:35:23 by bsarai           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <stdlib.h>
 #include "pipex.h"
@@ -62,7 +73,6 @@ unsigned long	ft_strlen(const char *s)
 	}
 	return (a);
 }
-
 
 char	*ft_strstr(const char *haystack, const char *needle)
 {

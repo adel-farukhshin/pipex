@@ -23,7 +23,7 @@ static void	err_cmd(t_pipex *pipex)
 	exit (1);
 }
 
-char	*get_cmd(char *path, char *cmd)
+char	*add_cmd(char *path, char *cmd)
 {
 	char	*t_path;
 	char	*tmp;
@@ -51,7 +51,7 @@ int	check_cmd(t_pipex *pipex)
 	{
 		while (pipex->path[j])
 		{	
-			tmp = get_cmd(pipex->path[j], pipex->argv[i]);
+			tmp = add_cmd(pipex->path[j], pipex->argv[i]);
 			// ft_printf("Trying to access %s; __ A_code is %d; i is %d\n", tmp, res, i);
 			if (!access(tmp, X_OK))
 				pipex->cmd[i - 2] = tmp;

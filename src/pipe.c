@@ -105,18 +105,12 @@ int	connect(t_pipex *pipex)
 		return (-1);
 	}
 	pid1 = child1(fd, pipex);
-	if (pid1 < 0)
-	{
-		err_process(fd);
-		return (-1);
-	}
 	pid2 = child2(fd, pipex);
-	if (pid2 < 0)
+	if ( pid1 < 0 || pid2 < 0)
 	{
 		err_process(fd);
 		return (-1);
 	}
-	
 	close(fd[0]); 
 	close(fd[1]); 
 	// sleep(100);

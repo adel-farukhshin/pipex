@@ -25,18 +25,34 @@ void	err_process(int fd[2])
 	perror("Error mesage");
 }
 
+int	fork_child(int fd[2])
+{
+	int	pid;
+
+	pid = fork();
+	if (pid < 0)
+	{
+		err_process(fd);
+		return (-1);
+	}
+	return (pid);
+}
+
 int	child1(int fd[2], t_pipex *pipex)
 {
 	int		file;	
 	int		pid1;
 	char	**l_argv;
 	
-	pid1 = fork();
+	pid1 = fork_child(fd);
 	if (pid1 < 0)
-	{
-		err_process(fd);
 		return (-1);
-	}
+	// pid1 = fork();
+	// if (pid1 < 0)
+	// {
+	// 	err_process(fd);
+	// 	return (-1);
+	// }
 	if (pid1 == 0)
 	{ 
 		file = open(pipex->argv[1], O_RDONLY);
@@ -62,12 +78,16 @@ int	child2(int fd[2], t_pipex *pipex)
 	int		file;
 	int		pid2;
 
-	pid2 = fork();
+	pid2 = fork_child(fd);
 	if (pid2 < 0)
-	{
-		err_process(fd);
 		return (-1);
-	}
+
+	// pid2 = fork();
+	// if (pid2 < 0)
+	// {
+	// 	err_process(fd);
+	// 	return (-1);
+	// }
 	if (pid2 == 0)
 	{
 		unlink(pipex->argv[pipex->argc - 1]);

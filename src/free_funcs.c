@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
 #include "ft_printf.h"
 #include "pipex.h"
 
@@ -22,9 +21,8 @@ void	free_strs(char **strs)
 	i = 0;
 	if (strs)
 	{
-		while(strs[i])
+		while (strs[i])
 		{
-			ft_printf("%s\n", strs[i]);
 			free(strs[i]);
 			i++;
 		}

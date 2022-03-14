@@ -12,13 +12,8 @@
 
 #include <unistd.h>
 #include <stdio.h>
-#include <sys/types.h>
-#include <sys/wait.h>
 #include <fcntl.h>
-
 #include <stdlib.h>
-#include <time.h>
-
 #include "ft_printf.h"
 #include "pipex.h"
 
@@ -41,7 +36,7 @@ void	init_pipex(t_pipex *pipex, int argc, char **argv, char **env)
 int	main(int argc, char **argv, char **env)
 {
 	t_pipex	*pipex;
-	int	fd;
+	int		fd;
 
 	if (argc != 5)
 	{
@@ -64,9 +59,5 @@ int	main(int argc, char **argv, char **env)
 	get_cmd(pipex);
 	connect(pipex);
 	free_pipex(pipex);
-	// sleep(100);
-	// ft_free_words(pipex->path);
-
-	
 	return (0);
 }

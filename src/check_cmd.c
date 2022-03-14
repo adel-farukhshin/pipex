@@ -39,7 +39,7 @@ char	*add_cmd(char *path, char *cmd)
 	return (t_path);
 }
 
-int	check_cmd(t_pipex *pipex)
+int	get_cmd(t_pipex *pipex)
 {
 	int		i;
 	int		j;

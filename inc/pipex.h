@@ -37,7 +37,7 @@ typedef struct s_pipex
 void			get_path(t_pipex *pipex);
 
 int				connect(t_pipex *pipex);
-int				check_cmd(t_pipex *pipex);
+int				get_cmd(t_pipex *pipex);
 
 void			free_pipex(t_pipex *pipex);
 void			free_strs(char **strs);

@@ -12,7 +12,6 @@
 
 #include <unistd.h> 
 #include <stdlib.h>
-
 #include "ft_printf.h"
 #include "pipex.h"
 
@@ -52,7 +51,6 @@ int	get_cmd(t_pipex *pipex)
 		while (pipex->path[j])
 		{	
 			tmp = add_cmd(pipex->path[j], pipex->argv[i]);
-			// ft_printf("Trying to access %s; __ A_code is %d; i is %d\n", tmp, res, i);
 			if (!access(tmp, X_OK))
 				pipex->cmd[i - 2] = tmp;
 			else
@@ -66,6 +64,5 @@ int	get_cmd(t_pipex *pipex)
 	}
 	free_strs(pipex->path);
 	pipex->path = NULL;
-	// is_tofree(pipex);
-	return (-1); // handle errors
+	return (1);
 }

@@ -16,7 +16,7 @@
 static int		ft_count(char *s, char c);
 static char		*ft_cpy_word(char *s, char c);
 static char		**ft_cpy_words(char *s, char c, int count);
-void		ft_free_words(char **words);
+void			ft_free_words(char **words);
 
 char	**ft_split(char const *s, char c)
 {

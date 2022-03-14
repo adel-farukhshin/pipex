@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
 #include "ft_printf.h"
 #include "pipex.h"
 
@@ -22,7 +21,6 @@ void	get_path(t_pipex *pipex)
 	int		i;
 
 	i = 0;
-	// ft_printf("*env is: %s", *env);
 	while (pipex->env[i])
 	{
 		if (ft_strstr(pipex->env[i], "PATH"))
@@ -30,14 +28,7 @@ void	get_path(t_pipex *pipex)
 		i++;
 	}
 	tmp = ft_strdup(str);
-	// ft_printf("%s\n", tmp);
 	pipex->path = ft_split(tmp + 5, ':');
 	free(tmp);
 	i = 0;
-	// while (pipex->path[i])
-	// {
-	// 	ft_printf("%s\n", pipex->path[i]);
-	// 	i++;
-	// }
-
 }
